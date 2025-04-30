@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddNotes from "./components/notes/AddNotes";
 import NotesList from "./components/notes/NotesList";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   const [view, setView] = useState("add");
@@ -33,6 +34,7 @@ function App() {
       ) : (
         <NotesList key={refresh} />
       )}
+      <Toaster />
     </div>
   );
 }

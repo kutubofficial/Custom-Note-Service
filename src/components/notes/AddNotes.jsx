@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { saveNote } from "../storage/storage";
+import toast from "react-hot-toast";
 
 const AddNotes = ({ onNoteAdded }) => {
   const [myNote, setMyNote] = useState({
@@ -18,8 +19,10 @@ const AddNotes = ({ onNoteAdded }) => {
       saveNote(myNote);
       onNoteAdded(); // Refresh list after submit
       setMyNote({ title: "", content: "" }); //cleaning my input boxes
+      toast.success("Note is created successfully!");
     } catch (err) {
       setError(err.message);
+      toast.error("something went wrong!");
     } finally {
       setLoading(false);
     }
