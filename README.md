@@ -1,15 +1,15 @@
-# **Setup and Run**
+# Setup and Run
 
 # Clone the repository
 git clone https://github.com/your-username/custom-note-service.git
 
-# Navigate into the project directory
+** Navigate into the project directory**
 cd custom-note-service
 
-# Install dependencies
+ **Install dependencies**
 npm install
 
-# Start the development server
+ **Start the development server**
 npm run dev
 
  # **Why? — Design Decisions**
