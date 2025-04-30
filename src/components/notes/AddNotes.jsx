@@ -6,16 +6,23 @@ const AddNotes = ({ onNoteAdded }) => {
     title: "",
     content: "",
   });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const handleChange = (e) => {
     const { name, value } = e.target;
     setMyNote({ ...myNote, [name]: value });
   };
   //why i choose useState and this submit handler
   const handleSubmit = (e) => {
-    e.preventDefault();
-    saveNote(myNote);
-    onNoteAdded(); // Refresh list after submit
-    setMyNote({ title: "", content: "" }); //cleaning my input boxes
+    try {
+      saveNote(myNote);
+      onNoteAdded(); // Refresh list after submit
+      setMyNote({ title: "", content: "" }); //cleaning my input boxes
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -67,7 +74,7 @@ const AddNotes = ({ onNoteAdded }) => {
         type="submit"
         className="w-full bg-gray-700 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg shadow-md transition duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50"
       >
-        Save Note
+        {loading ? "Saving..." : "Save Note"}
       </button>
     </form>
   );
